@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app2/NewsAppModules/newsApp/news_cubit/NewsCubit.dart';
+import 'package:news_app2/network/local/shared_prefrence.dart';
 
 class settingsScreen extends StatelessWidget {
   @override
@@ -13,21 +14,23 @@ class settingsScreen extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Text('Dark Mode',
-              style: Theme.of(context).textTheme.displaySmall,),
+            child: Text(
+              'Dark Mode',
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
           ),
         ),
         Switch(
-            value: dark,
-            onChanged: (bool value) {
-              dark = value;
-              NewsAppCubit.get(context).changeMode();
-            },
-            inactiveThumbColor: Colors.green,
+          value: dark,
+          onChanged: (bool value) {
+            dark = !dark;
+            NewsAppCubit.get(context).changeMode();
+            CasheHelper.setBoolean(key: 'isDark', value: NewsAppCubit.get(context).isDark);
+          },
+          inactiveThumbColor: Colors.green,
           inactiveTrackColor: Colors.white,
-
-            ),
-
+          activeColor: Colors.teal,
+        ),
       ],
     );
   }

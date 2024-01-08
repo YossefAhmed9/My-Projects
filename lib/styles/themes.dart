@@ -22,12 +22,10 @@ ThemeData darkTheme = ThemeData(
         overflow: TextOverflow.ellipsis,
         fontSize: 20,
         color: Colors.white,
-        fontFamily: 'google_fonts',
       ),
 
       //publishdAt
       displayLarge: TextStyle(
-        fontFamily: 'google_fonts',
         fontSize: 17,
         color: Colors.white,
         fontWeight: FontWeight.w300,
@@ -36,7 +34,6 @@ ThemeData darkTheme = ThemeData(
 
       //article title
       displaySmall: TextStyle(
-        fontFamily: 'google_fonts',
         fontSize: 20,
         fontWeight: FontWeight.w700,
         color: Colors.white,
