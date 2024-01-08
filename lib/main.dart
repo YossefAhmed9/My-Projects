@@ -36,16 +36,15 @@ class MyApp extends StatelessWidget {
             ..businessData()
             ..SportData()
             ..TechData()
-            ..changeMode(),
         ),
       ],
       child: BlocConsumer<NewsAppCubit, NewsAppStates>(
           listener: (context, state) {},
           builder: (context, state) {
             return MaterialApp(
-              themeMode: NewsAppCubit.get(context).isDark
-                  ? ThemeMode.light
-                  : ThemeMode.dark,
+              themeMode: CasheHelper.getBoolean(key: 'isDark') ==true
+                  ? ThemeMode.dark
+                  : ThemeMode.light,
               home: NewsLayout(),
               theme: lightTheme,
               debugShowCheckedModeBanner: false,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../NewsAppModules/webView/web_view_screen.dart';
+import 'package:intl/intl.dart';
+//String formattedDate = DateFormat.yMMMEd().format(DateTime.now());
 
 //Default TextForm-field
 class DefaultTextFormField {
@@ -110,17 +112,23 @@ Widget NewReport(article, context) => InkWell(
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-
-              // clipBehavior: Clip.antiAliasWithSaveLayer,
-
-              width: 150,
-              height: 150,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                image: DecorationImage(
-                    fit: BoxFit.fitHeight,
-                    image: NetworkImage('${article['urlToImage']}')),
-              )),
+            // clipBehavior: Clip.antiAliasWithSaveLayer,
+            width: 150,
+            height: 150,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Image(
+                image: NetworkImage('${article['urlToImage']}'),
+                errorBuilder: (BuildContext context, Object exception,
+                    StackTrace? stackTrace) {
+                  return Image.asset(
+                    'assets/images/error image.png',
+                    width: 50,
+                    height: 50,
+                  );
+                }),
+          ),
           const SizedBox(
             width: 15,
           ),
@@ -149,7 +157,8 @@ Widget NewReport(article, context) => InkWell(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          '${article['publishedAt']}',
+                          '${article['publishedAt']}'.substring(0, 10),
+                          //DateFormat.yMMMEd().format(article['publishedAt']).toString(),
                           style: const TextStyle(
                             overflow: TextOverflow.ellipsis,
                             fontSize: 15,

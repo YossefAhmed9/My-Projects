@@ -10,6 +10,7 @@ import '../../business/Business_screen.dart';
 import '../../settings/settings_screen.dart';
 import '../../sport/Sport_screen.dart';
 import '../../tech/Tech_screen.dart';
+import 'package:intl/intl.dart';
 
 class NewsAppCubit extends Cubit<NewsAppStates> {
   NewsAppCubit() : super(NewsAppInitialState());
@@ -17,6 +18,7 @@ class NewsAppCubit extends Cubit<NewsAppStates> {
   static NewsAppCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = CasheHelper.getBoolean(key: 'index') ?? 0;
+  String formattedDate = DateFormat.yMMMEd().format(DateTime.now());
 
   List<Widget> screen = [
     BusinessScreen(),
@@ -126,8 +128,8 @@ class NewsAppCubit extends Cubit<NewsAppStates> {
   changeMode() {
     isDark = !isDark;
     //print('this is${isDark}');
-    CasheHelper.getBoolean(key: 'isDark');
     CasheHelper.setBoolean(key: 'isDark', value: isDark).then((value) {
+      print('This is isDark ${CasheHelper.getBoolean(key: 'isDark')}');
       emit(ChangeModeState());
     });
   }
