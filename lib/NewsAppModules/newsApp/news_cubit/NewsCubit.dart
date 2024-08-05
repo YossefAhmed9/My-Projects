@@ -2,7 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app2/NewsAppModules/newsApp/news_cubit/states.dart';
+import 'package:newzak/NewsAppModules/newsApp/news_cubit/states.dart';
 
 import '../../../network/local/shared_prefrence.dart';
 import '../../../network/remote/dio_helper.dart';
@@ -21,13 +21,14 @@ class NewsAppCubit extends Cubit<NewsAppStates> {
   String formattedDate = DateFormat.yMMMEd().format(DateTime.now());
 
   List<Widget> screen = [
+    LatestNewsScreen(),
     BusinessScreen(),
-    SportScreen(),
+
     TechScreen(),
     settingsScreen()
   ];
 
-  List<String> titles = ['Business', 'Sport', 'Tech', 'Settings'];
+  List<String> titles = ['Latest', 'Business', 'Tech', 'Settings'];
 
   void changeIndex(int index) {
     currentIndex = index;
@@ -70,27 +71,22 @@ class NewsAppCubit extends Cubit<NewsAppStates> {
     });
   }
 
-  List<dynamic> sport = [];
+  List<dynamic> latest = [];
 
-  SportData() {
-    //
-    // https://newsapi.org/
+  latestData() {
+
+   //https://newsapi.org/
     // v2/everything?
-    // q=apple&
-    // from=2023-05-12&
-    // to=2023-05-12&
-    // sortBy=popularity
+    // domains=wsj.com
     // &apiKey=eac516a81a1d43d4bbb1293bdd20dd24
     emit(SportLoadingState());
     return DioHelper.getDioData(url: 'v2/everything', query: {
-      'q': 'apple',
+      'domains': 'wsj.com',
       'from': '2023-05-12',
-      'to': '2023-05-12',
-      'sortBy': 'popularity',
       'apiKey': 'eac516a81a1d43d4bbb1293bdd20dd24'
     }).then((value) {
       //print('${value.data['articles'][1]['title']}');
-      sport = value.data['articles'];
+      latest = value.data['articles'];
       emit(SportSuccessState());
     }).catchError((error) {
       emit(SportErrorState(error));

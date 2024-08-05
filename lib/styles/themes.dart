@@ -45,6 +45,7 @@ ThemeData darkTheme = ThemeData(
 MaterialColor defaultColor = Colors.red;
 
 ThemeData lightTheme = ThemeData(
+
   scaffoldBackgroundColor: Colors.white,
 
   textTheme: const TextTheme(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../NewsAppModules/newsApp/news_cubit/NewsCubit.dart';
 import '../NewsAppModules/newsApp/news_cubit/states.dart';
 import '../NewsAppModules/search/search_screen.dart';
@@ -51,15 +50,14 @@ class NewsLayout extends StatelessWidget {
               selectedFontSize: 15,
               selectedItemColor: Colors.purpleAccent,
               currentIndex: cubit.currentIndex,
-              items: [
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.business_center), label: 'Business'),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.sports_baseball), label: 'Sport'),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.four_g_plus_mobiledata), label: 'Tech'),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.settings), label: 'Settings'),
+              items: const [
+                BottomNavigationBarItem(icon: Icon(Icons.access_time), label: 'Latest'),
+
+                BottomNavigationBarItem(icon: Icon(Icons.business_center), label: 'Business'),
+
+                BottomNavigationBarItem(icon: Icon(Icons.four_g_plus_mobiledata), label: 'Tech'),
+
+                BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
               ],
               onTap: (index) {
                 cubit.changeIndex(index);

@@ -6,7 +6,7 @@ import '../../components/components.dart';
 import '../newsApp/news_cubit/NewsCubit.dart';
 import '../newsApp/news_cubit/states.dart';
 
-class SportScreen extends StatelessWidget{
+class LatestNewsScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
@@ -17,9 +17,9 @@ class SportScreen extends StatelessWidget{
             condition: state is! SportLoadingState,
             builder: (context) => ListView.separated(
               physics: BouncingScrollPhysics(),
-              itemBuilder: (context, index) => NewReport(NewsAppCubit.get(context).sport[index],context),
+              itemBuilder: (context, index) => NewReport(NewsAppCubit.get(context).latest[index],context),
               separatorBuilder: (context, index) => separate(),
-              itemCount: NewsAppCubit.get(context).sport.length,
+              itemCount: NewsAppCubit.get(context).latest.length,
             ),
             fallback: (context) => Center(child: CircularProgressIndicator()));
       },

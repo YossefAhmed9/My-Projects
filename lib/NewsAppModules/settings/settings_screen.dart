@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:news_app2/NewsAppModules/newsApp/news_cubit/NewsCubit.dart';
-import 'package:news_app2/network/local/shared_prefrence.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newzak/NewsAppModules/newsApp/news_cubit/states.dart';
+
+import '../../network/local/shared_prefrence.dart';
+import '../newsApp/news_cubit/NewsCubit.dart';
 
 class settingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var dark = NewsAppCubit.get(context).isDark;
-    //var mode=NewsAppCubit.get(context).NowMode;
     var cubit = NewsAppCubit.get(context);
 
+    return BlocConsumer<NewsAppCubit, NewsAppStates>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
     return Row(
       children: [
         Expanded(
@@ -33,5 +40,7 @@ class settingsScreen extends StatelessWidget {
         ),
       ],
     );
+  },
+);
   }
 }

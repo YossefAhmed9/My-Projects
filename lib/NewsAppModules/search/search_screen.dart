@@ -1,7 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../components/components.dart';
 import '../newsApp/news_cubit/NewsCubit.dart';
 import '../newsApp/news_cubit/states.dart';
@@ -13,11 +12,15 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var searchController = TextEditingController();
+    return BlocConsumer<NewsAppCubit, NewsAppStates>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Search"),
       ),
-      body: Scaffold(
         body: Column(
           children: [
             Padding(
@@ -73,7 +76,8 @@ class SearchScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
     );
+  },
+);
   }
 }
