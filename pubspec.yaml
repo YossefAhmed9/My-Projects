@@ -31,18 +31,18 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  intl: ^0.17.0
+  intl:
   sqflite:
-  conditional_builder_null_safety: ^0.0.6
-  bloc: ^8.1.1
-  flutter_bloc: ^8.1.2
-  dio: ^5.1.1
-  shared_preferences: ^2.1.0
-  webview_flutter: ^3.0.4
-  http: ^1.0.0
-  flutter_switch: ^0.3.2
-  google_fonts: ^5.0.0
-  smooth_page_indicator: ^1.1.0
+  conditional_builder_null_safety:
+  bloc:
+  flutter_bloc:
+  dio:
+  shared_preferences:
+  webview_flutter:
+  http:
+  flutter_switch:
+  google_fonts:
+  smooth_page_indicator:
 
 
 dev_dependencies:
