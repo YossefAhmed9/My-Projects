@@ -1,5 +1,7 @@
 import 'dart:core';
 
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newzak/NewsAppModules/newsApp/news_cubit/states.dart';
@@ -62,7 +64,13 @@ class NewsAppCubit extends Cubit<NewsAppStates> {
       'apiKey': 'eac516a81a1d43d4bbb1293bdd20dd24'
     }).then((value) {
       //print('${value.data['articles'][1]['title']}');
-      business = value.data['articles'];
+      business .addAll(value.data['articles']);
+      if (kDebugMode) {
+        print('This is business $business');
+      }
+      if (kDebugMode) {
+        print('This is business ${business.length}');
+      }
       emit(GetBusinessSuccessState());
     }).catchError((error) {
       emit(GetBusinessErrorState(error));
@@ -75,24 +83,36 @@ class NewsAppCubit extends Cubit<NewsAppStates> {
 
   latestData() {
 
-   //https://newsapi.org/
-    // v2/everything?
-    // domains=wsj.com
-    // &apiKey=eac516a81a1d43d4bbb1293bdd20dd24
-    emit(SportLoadingState());
-    return DioHelper.getDioData(url: 'v2/everything', query: {
-      'domains': 'wsj.com',
-      'from': '2023-05-12',
-      'apiKey': 'eac516a81a1d43d4bbb1293bdd20dd24'
-    }).then((value) {
-      //print('${value.data['articles'][1]['title']}');
-      latest = value.data['articles'];
-      emit(SportSuccessState());
-    }).catchError((error) {
-      emit(SportErrorState(error));
-      print(error.runtimeType);
-      print(error.toString());
-    });
+//https://newsapi.org/
+// v2/everything?
+// q=tesla
+// &from=2024-07-11
+// &sortBy=publishedAt&
+// apiKey=eac516a81a1d43d4bbb1293bdd20dd24
+      emit(SportLoadingState());
+      return DioHelper.getDioData(url: 'v2/everything', query: {
+        'q': 'tesla',
+        'from': '2024-07-11',
+        'sortBy': 'publishedAt',
+        'apiKey': 'eac516a81a1d43d4bbb1293bdd20dd24'
+      }).then((value) {
+        //print('${value.data['articles'][1]['title']}');
+        latest .addAll(value.data['articles']);
+
+
+        if (kDebugMode) {
+          print('this is latest ${latest}');
+        }
+        if (kDebugMode) {
+          print('this is latest ${latest.length}');
+        }
+        emit(SportSuccessState());
+      }).catchError((error) {
+        emit(SportErrorState(error));
+        print(error.runtimeType);
+        print(error.toString());
+      });
+
   }
 
   List<dynamic> tech = [];
@@ -108,7 +128,9 @@ class NewsAppCubit extends Cubit<NewsAppStates> {
       'apiKey': 'eac516a81a1d43d4bbb1293bdd20dd24'
     }).then((value) {
       //print('${value.data['articles'][1]['title']}');
-      tech = value.data['articles'];
+      tech.addAll(value.data['articles']);
+      print('This is tech ${tech}');
+      print('This is tech ${tech.length}');
       emit(TechSuccessState());
     }).catchError((error) {
       emit(TechErrorState(error));

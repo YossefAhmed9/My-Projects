@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 ThemeData darkTheme = ThemeData(
   primarySwatch: defaultColor,
@@ -9,6 +10,7 @@ ThemeData darkTheme = ThemeData(
     unselectedItemColor: Colors.green,
   ),
   appBarTheme: const AppBarTheme(
+    systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.black),
       color: Colors.black,
       actionsIconTheme: IconThemeData(color: Colors.white),
       titleTextStyle: TextStyle(
@@ -45,7 +47,6 @@ ThemeData darkTheme = ThemeData(
 MaterialColor defaultColor = Colors.red;
 
 ThemeData lightTheme = ThemeData(
-
   scaffoldBackgroundColor: Colors.white,
 
   textTheme: const TextTheme(
@@ -78,6 +79,11 @@ ThemeData lightTheme = ThemeData(
   iconTheme: const IconThemeData(color: Colors.white),
 
   appBarTheme: const AppBarTheme(
+      systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.white,
+          systemNavigationBarColor: Colors.white,
+          ),
+
       color: Colors.white,
       actionsIconTheme: IconThemeData(color: Colors.black),
       titleTextStyle: TextStyle(color: Colors.black),

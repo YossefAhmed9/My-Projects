@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
         // BlocProvider(create:(BuildContext context) => NewsAppCubit()),
         BlocProvider(
           create: (BuildContext context) => NewsAppCubit()
-            ..businessData()
             ..latestData()
+            ..businessData()
             ..TechData()
         ),
       ],

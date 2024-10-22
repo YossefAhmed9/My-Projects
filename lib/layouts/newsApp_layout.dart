@@ -23,20 +23,20 @@ class NewsLayout extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => SearchScreen()));
+                            builder: (context) => const SearchScreen()));
                   },
-                  icon: Icon(Icons.search),
+                  icon: const Icon(Icons.search),
                   iconSize: 30,
                 ),
               ],
               systemOverlayStyle: SystemUiOverlayStyle(
                 systemNavigationBarIconBrightness: Brightness.dark,
                 statusBarColor: NewsAppCubit.get(context).isDark
-                    ? Colors.white
-                    : Colors.black,
+                    ? Colors.black
+                    : Colors.white,
                 statusBarIconBrightness: NewsAppCubit.get(context).isDark
-                    ? Brightness.dark
-                    : Brightness.light,
+                    ? Brightness.light
+                    : Brightness.dark,
               ),
               elevation: 0,
               title: Text(

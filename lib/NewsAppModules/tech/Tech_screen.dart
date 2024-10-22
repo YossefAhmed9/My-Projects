@@ -24,7 +24,7 @@ class TechScreen extends StatelessWidget{
                   separatorBuilder: (context, index) => separate(),
                   itemCount: NewsAppCubit.get(context).tech.length,
                 ),
-                fallback: (context) => Center(child: CircularProgressIndicator()));
+                fallback: (context) => const Center(child: CircularProgressIndicator()));
           },
           listener: (context, state) {},
         );
